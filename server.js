@@ -1,18 +1,25 @@
-import express from "express";
-import dotenv from 'dotenv'
-import createHttpError from "http-errors";
-dotenv.config();
+const express = require("express");
+require("dotenv").config();
+const createError = require("http-errors");
+const route = require("./routes/User.route.js")
 const app = express();
+require('./helpers/connections_redis');
 
-app.get('/', (req, res) => {
-  console.log('a::', a)
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use('/user', route);
+
+app.get('/', (req, res, next) => {
+  console.log('a:::', a);
   res.send('Home page')
 });
 
-app.use((err, req, res, next) => {
+app.use((req, res, next) => {
   //const error = new Error('Not Found');
   //error.status = 500;
-  next(createHttpError.NotFound('This page does not exist'));
+  next(createError.NotFound('This route does not exist'));
 });
 
 app.use((err, req, res, next) => {

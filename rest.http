@@ -1,4 +1,22 @@
-GET http://localhost:8080
+###
+GET http://localhost:8000
 
 ###
-GET http://localhost:8080/aa
+POST http://localhost:8000/user/register
+Content-Type: application/json
+
+{
+  "email": "test1@gmail.com",
+  "password": "abc123"
+}
+###
+POST http://localhost:8000/user/login
+Content-Type: application/json
+
+{
+  "email": "test1@gmail.com",
+  "password": "abc123"
+}
+###
+GET http://localhost:8000/user/getlists
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDA1ZmE0OTJjNGIwZDBkNzkwYjg3ODMiLCJpYXQiOjE2Nzg4MDUyODMsImV4cCI6MTY3ODgwNTI5M30.du28SWbdtez4xS2k1gnoGs09QoUyRVxMUiL7IgAaCRM
